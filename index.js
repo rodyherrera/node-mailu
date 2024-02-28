@@ -82,18 +82,38 @@ class MailuClient{
         return this.useAxios('delete', `/user/${email}`);
     };
 
+    /**
+     * Retrieves a list of domains managed by Mailu.
+     *
+     * @returns {Promise<Array>} Promise with an array of domain objects.
+    */
     getDomains(){
         return this.useAxios('get', '/domain');
     };
 
+    /**
+     * Retrieves a list of alternative addresses configured in Mailu.
+     *
+     * @returns {Promise<Array>} Promise with an array of alternative address objects.
+    */
     getAlternatives(){
         return this.useAxios('get', '/alternative')
     };
 
+    /**
+     * Retrieves a list of email aliases configured in Mailu.
+     *
+     * @returns {Promise<Array>} Promise with an array of alias objects.
+    */
     getAliases(){
         return this.useAxios('get', '/alias');
     };
 
+    /**
+     * Retrieves a list of relays configured in Mailu.
+     *
+     * @returns {Promise<Array>} Promise with an array of relay objects.
+    */
     getRelays(){
         return this.useAxios('get', '/relay');
     };
