@@ -1,3 +1,7 @@
+/**
+ * Provides methods for interacting with a user management service, presumably
+ * a Mailu-related API.
+*/
 class UserService{
     constructor(mailuClient){
         this.client = mailuClient;
@@ -6,7 +10,13 @@ class UserService{
     /**
      * Gets a list of all users.
      *
-     * @returns {Promise<Array>} Promise with an array of user objects.
+     * @returns {Promise<Array<Object>>} A Promise resolving to an array of user objects.
+     *   * Each user object has properties such as:
+     *     * email (string)
+     *     * password (string) - Likely a hashed value
+     *     * comment (string) 
+     *     * quota_bytes (number)
+     *     * And many more... 
     */
     getUsers(){
         return this.client.useAxios('get', '/user');
@@ -15,8 +25,13 @@ class UserService{
     /**
      * Creates a new user.
      *
-     * @param {object} body Object with the user data.
-     * @returns {Promise<object>} Promise with the object of the created user.
+     * @param {Object} body An object containing the following user data:
+     *   * email (string): The user's email address.
+     *   * raw_password (string): The user's plain text password.
+     *   * comment (string): An optional comment about the user.
+     *   * quota_bytes (number): Optional storage quota for the user.
+     *   * And many more...
+     * @returns {Promise<Object>} A Promise resolving to the created user object.
     */
     createUser(body){
         return this.client.useAxios('post', '/user', body)
@@ -25,9 +40,10 @@ class UserService{
     /**
      * Modifies an existing user.
      *
-     * @param {string} email Email of the user to modify.
-     * @param {object} body Object with the data to modify of the user.
-     * @returns {Promise<object>} Promise with the object of the updated user.
+     * @param {string} email The email address of the user to modify.
+     * @param {Object} body Object containing user data to modify.  
+     *   (Same structure as with the `createUser` method)
+     * @returns {Promise<Object>} A Promise resolving to the updated user object.
     */
     updateUser(email, body){
         return this.client.useAxios('patch', `/user/${email}`, body);
@@ -36,8 +52,8 @@ class UserService{
     /**
      * Gets information about a specific user.
      *
-     * @param {string} email Email of the user to consult.
-     * @returns {Promise<object>} Promise with the object of the user.
+     * @param {string} email The email address of the user to retrieve.
+     * @returns {Promise<Object>} A Promise resolving to the user object.
     */
     getUser(email){
         return this.client.useAxios('get', `/user/${email}`);
@@ -46,8 +62,8 @@ class UserService{
     /**
      * Deletes a user.
      *
-     * @param {string} email Email of the user to delete.
-     * @returns {Promise<void>} Empty promise if the deletion was successful.
+     * @param {string} email The email address of the user to delete.
+     * @returns {Promise<void>} A Promise resolving if the deletion was successful (no specific data returned).
     */
     deleteUser(email){
         return this.client.useAxios('delete', `/user/${email}`);

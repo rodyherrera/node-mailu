@@ -12,14 +12,43 @@ const UserService = require('./services/user');
  * @param {string} apiKey Authorization key for the Mailu API.
 */
 class MailuClient{
+    /**
+     * Creates an instance of the MailuClient.
+     * @param {string} endpoint - Base URL of the Mailu API.
+     * @param {string} apiKey - Authorization key for the Mailu API.
+    */
     constructor(endpoint, apiKey){
         this.apiKey = apiKey;
         this.endpoint = endpoint;
 
+        /**
+         * Provides methods for interacting with Mailu aliases.
+         * @type {AliasService}
+        */
         this.aliasService = new AliasService(this);
+
+        /**
+         * Provides methods for interacting with Mailu alternative addresses.
+         * @type {AlternativeService}
+        */
         this.alternativeService = new AlternativeService(this);
+
+        /**
+         * Provides methods for interacting with Mailu domains.
+         * @type {DomainService}
+        */
         this.domainService = new DomainService(this);
+
+        /**
+         * Provides methods for interacting with Mailu relays.
+         * @type {RelayService}
+        */
         this.relayService = new RelayService(this);
+
+        /**
+         * Provides methods for interacting with Mailu users.
+         * @type {UserService}
+         */
         this.userService = new UserService(this);
     }
 
