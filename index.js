@@ -24,7 +24,10 @@ class MailuClient{
         return axios({
             method,
             url: this.endpoint + path,
-            headers: { 'Authorization': `Bearer ${this.apiKey}` },
+            headers: { 
+                'Authorization': `Bearer ${this.apiKey}`,
+                'Content-Type': 'application/json'
+            },
             data
         })
     };
@@ -77,7 +80,23 @@ class MailuClient{
     */
     deleteUser(email){
         return this.useAxios('delete', `/user/${email}`);
-    }
+    };
+
+    getDomains(){
+        return this.useAxios('get', '/domain');
+    };
+
+    getAlternatives(){
+        return this.useAxios('get', '/alternative')
+    };
+
+    getAliases(){
+        return this.useAxios('get', '/alias');
+    };
+
+    getRelays(){
+        return this.useAxios('get', '/relay');
+    };
 };
 
 module.exports = MailuClient;
