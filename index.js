@@ -92,6 +92,110 @@ class MailuClient{
     };
 
     /**
+     * Creates a new domain.
+     *
+     * @param {Object} body - The body of the request, containing domain information.
+     * @returns {Promise} A Promise that resolves with the domain creation response.
+    */
+    createDomain(body){
+        return this.useAxios('post', '/domain', body);
+    };
+
+    /**
+     * Updates an existing domain.
+     *
+     * @param {string} domain - The domain to be updated.
+     * @param {Object} body - The body of the request, containing updated domain information.
+     * @returns {Promise} A Promise that resolves with the domain update response.
+    */
+    updateDomain(domain, body){
+        return this.useAxios('patch', `/domain/${domain}`, body);
+    };
+
+    /**
+     * Retrieves information about a specific domain.
+     *
+     * @param {string} domain - The domain to retrieve.
+     * @returns {Promise} A Promise that resolves with the domain information.
+    */
+    getDomain(domain){
+        return this.useAxios('get', `/domain/${domain}`);
+    };
+
+    /**
+     * Deletes a specified domain.
+     *
+     * @param {string} domain - The domain to be deleted.
+     * @returns {Promise} A Promise that resolves with the domain deletion response.
+    */
+    deleteDomain(domain){
+        return this.useAxios('delete', `/domain/${domain}`);
+    };
+
+    /**
+     * Generates DKIM (DomainKeys Identified Mail) keys for a domain.
+     *
+     * @param {string} domain - The domain for which to generate DKIM keys.
+     * @returns {Promise} A Promise that resolves with the DKIM keys generation response.
+    */
+    generateDomainKeys(domain){
+        return this.useAxios('post', `/domain/${domain}/dkim/`);
+    };
+
+    /**
+     * Retrieves a list of managers for a specified domain.
+     *
+     * @param {string} domain - The domain to retrieve managers for.
+     * @returns {Promise} A Promise that resolves with a list of domain managers.
+    */
+    getDomainManagers(domain){
+        return this.useAxios('get', `/domain/${domain}/manager/`);
+    };
+
+    /**
+     * Creates a new domain manager.
+     *
+     * @param {string} domain - The domain to add the manager to.
+     * @param {Object} body - The body of the request, containing domain manager information. 
+     * @returns {Promise} A Promise that resolves with the domain manager creation response.
+    */
+    createDomainManager(domain, body){
+        return this.useAxios('post', `/domain/${domain}/manager/`, body);
+    };
+
+    /**
+     * Deletes a domain manager.
+     *
+     * @param {string} domain - The domain from which to delete the manager.
+     * @param {string} email - The email address of the manager to delete.
+     * @returns {Promise} A Promise that resolves with the domain manager deletion response.
+    */
+    deleteDomainManager(domain, email){
+        return this.useAxios('delete', `/domain/${domain}/manager/${email}`);
+    };
+
+    /**
+     * Retrieves information about a specific domain manager.
+     *
+     * @param {string} domain - The domain of the manager.
+     * @param {string} email - The email address of the manager.
+     * @returns {Promise} A Promise that resolves with the domain manager information.
+    */
+    getDomainManager(domain, email){
+        return this.useAxios('get', `/domain/${domain}/manager/${email}`);
+    };
+
+    /**
+     * Retrieves a list of users associated with a domain.
+     *
+     * @param {string} domain - The domain to retrieve users for.
+     * @returns {Promise} A Promise that resolves with a list of users.
+    */
+    getUsersFromDomain(domain){
+        return this.useAxios('get', `/domain/${domain}/users/`);
+    };
+
+    /**
      * Retrieves a list of alternative addresses configured in Mailu.
      *
      * @returns {Promise<Array>} Promise with an array of alternative address objects.
@@ -100,14 +204,32 @@ class MailuClient{
         return this.useAxios('get', '/alternative')
     };
 
+    /**
+     * Creates a new alternative address in Mailu.
+     *
+     * @param {object} body Object containing alternative address data.
+     * @returns {Promise<object>} Promise resolving to the created alternative address object.
+    */
     createAlternative(body){
         return this.useAxios('post', '/alternative', body);
     };
 
+    /**
+     * Retrieves details of a specific alternative address.
+     *
+     * @param {string} alt The alternative email address to retrieve. 
+     * @returns {Promise<object>} Promise resolving to the alternative address object.
+    */
     getAlternative(alt){
         return this.useAxios('get', `/alternative/${alt}`);
     };
 
+    /**
+     * Deletes an existing alternative address. 
+     *
+     * @param {string} alt The alternative email address to delete. 
+     * @returns {Promise<void>} Promise resolving when the deletion is complete (no data returned). 
+    */
     deleteAlternative(alt){
         return this.useAxios('delete', `/alternative/${alt}`);
     };
@@ -119,6 +241,18 @@ class MailuClient{
     */
     getAliases(){
         return this.useAxios('get', '/alias');
+    };
+
+    createAlias(body){
+        return this.useAxios('post', '/alias', body);
+    };
+
+    getAliasesFromDomain(domain){
+        return this.useAxios('get', `/alias/destination/${domain}`);
+    };
+
+    updateAlias(alias){
+        return this.useAxios
     };
 
     /**
