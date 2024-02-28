@@ -35,7 +35,8 @@ const mailuClient = new MailuClient(endpoint, apiKey);
 })();
 
 ```
-[Your API key](https://mailu.io/master/api.html) is stored within the mailu directory on your system, contained within the .env environment file.
+##### Important Note
+Your API key is stored within the `mailu` directory on your system, contained within the `.env` environment file. Reference the Mailu documentation for specifics.
 
 ## Sections
 * **MailuClient**
