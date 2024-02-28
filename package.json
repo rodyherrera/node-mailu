@@ -1,4 +1,36 @@
 {
+  "name": "node-mailu",
+  "version": "1.0.0",
+  "description": "node-mailu is a Node.js library designed to facilitate interaction with the Mailu API, an open source, self-hosted email platform. This library provides methods and functions that allow developers to programmatically manage various operations related to the configuration and administration of email servers through the Mailu API.",
+  "license": "MIT",
+  "author": {
+    "email": "hello@rodyherrera.com",
+    "name": "Rodolfo Herrera Hernandez",
+    "url": "https://rodyherrera.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rodyherrera/node-mailu/"
+  },
+  "keywords": [
+    "node-mailu",
+    "mailu",
+    "email",
+    "mail-server",
+    "email-platform",
+    "email-management",
+    "email-administration",
+    "email-automation",
+    "API",
+    "Node.js",
+    "library",
+    "Mailu-API",
+    "self-hosted-email",
+    "open-source",
+    "server-management",
+    "swagger",
+    "REST"
+  ],
   "dependencies": {
     "axios": "^1.6.7"
   }
