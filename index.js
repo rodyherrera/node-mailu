@@ -100,6 +100,18 @@ class MailuClient{
         return this.useAxios('get', '/alternative')
     };
 
+    createAlternative(body){
+        return this.useAxios('post', '/alternative', body);
+    };
+
+    getAlternative(alt){
+        return this.useAxios('get', `/alternative/${alt}`);
+    };
+
+    deleteAlternative(alt){
+        return this.useAxios('delete', `/alternative/${alt}`);
+    };
+    
     /**
      * Retrieves a list of email aliases configured in Mailu.
      *
